@@ -50,6 +50,18 @@ void gato::revisaGanador()
     {
         ganador(mostrar[6]);
     }
+    else if (mostrar[0] == mostrar[3] && mostrar[3] == mostrar[6])
+    {
+        ganador(mostrar[6]);
+    }
+    else if (mostrar[1] == mostrar[4] && mostrar[4] == mostrar[7])
+    {
+        ganador(mostrar[6]);
+    }
+    else if (mostrar[2] == mostrar[5] && mostrar[5] == mostrar[8])
+    {
+        ganador(mostrar[6]);
+    }
     if (turno == 10)
     {
         ganador("E");
@@ -70,7 +82,7 @@ void gato::ganador(string ganador)
     {
         cout << endl;
         cout << "-------------------------------------" << endl;
-        cout << "Felicidades Gano " << jugador1 << " Con las X" <<endl;
+        cout << "Felicidades Gano " << jugador1 << " Con las X" << endl;
         cout << "-------------------------------------" << endl;
         fin();
     }
@@ -78,11 +90,10 @@ void gato::ganador(string ganador)
     {
         cout << endl;
         cout << "-------------------------------------" << endl;
-        cout << "Felicidades Gano " << jugador2 << " Con las O" <<endl;
+        cout << "Felicidades Gano " << jugador2 << " Con las O" << endl;
         cout << "-------------------------------------" << endl;
         fin();
     }
-    
 }
 
 bool gato::fin()
@@ -91,50 +102,53 @@ bool gato::fin()
 }
 
 
-//Falta agregar validacion de que no se intente sobre escribir una jugada
 void gato::jugada()
 {
-
     string seleccion;
+    do
+    {
+        if (turno % 2 != 0)
+        {
+            cout << endl;
+            cout << jugador1;
+            cout << " Ingrese el numero de la casilla donde desea hacer su moviento " << endl;
+            getline(cin, seleccion);
+        }
+        else
+        {
+            cout << endl;
+            cout << jugador2;
+            cout << " Ingrese el numero de la casilla donde desea hacer su moviento " << endl;
+            getline(cin, seleccion);
+        }
+
+    } while (!validacion(seleccion));
+
     if (turno % 2 != 0)
     {
-        cout << endl;
-        cout << jugador1;
-        cout << " Ingrese el numero de la casilla donde desea hacer su moviento " << endl;
-        getline(cin, seleccion);
-        mostrar[stoi(seleccion)-1] = "X";
-
+        mostrar[stoi(seleccion) - 1] = "X";
     }
     else
     {
-        cout << endl;
-        cout << jugador2;
-        cout << " Ingrese el numero de la casilla donde desea hacer su moviento " << endl;
-        getline(cin, seleccion);
-        mostrar[stoi(seleccion)-1] = "O";
-
+        mostrar[stoi(seleccion) - 1] = "O";
     }
     mostrarTablero();
     revisaGanador();
 }
 
 
+// Falta terminar todas las validaciones posibles, pero ya funciona la de stoi
 bool gato::validacion(string seleccion)
 {
     try
     {
-        
+        static_cast<void>(stoi(seleccion));
     }
-    catch(exception &err)
+    catch (exception &err)
     {
         cout << "No se ingreso un numero, Intentelo de nuevo" << endl;
+        return false;
     }
-    
 
-
-
-
-
-
-
+    return true;
 }
