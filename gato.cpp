@@ -140,9 +140,10 @@ void gato::jugada()
 // Falta terminar todas las validaciones posibles, pero ya funciona la de stoi
 bool gato::validacion(string seleccion)
 {
+    int selec;
     try
     {
-        static_cast<void>(stoi(seleccion));
+        selec = stoi(seleccion);
     }
     catch (exception &err)
     {
@@ -150,5 +151,9 @@ bool gato::validacion(string seleccion)
         return false;
     }
 
+    if (selec > 9 || selec  < 0)
+    {
+        return false;
+    }
     return true;
 }
