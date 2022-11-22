@@ -101,7 +101,6 @@ bool gato::fin()
     return true;
 }
 
-
 void gato::jugada()
 {
     string seleccion;
@@ -137,23 +136,37 @@ void gato::jugada()
 }
 
 
-// Falta terminar todas las validaciones posibles, pero ya funciona la de stoi
 bool gato::validacion(string seleccion)
 {
+
     int selec;
+    // Validacion de input, en caso de recibir algo que no es un int Falla
     try
     {
         selec = stoi(seleccion);
     }
     catch (exception &err)
     {
-        cout << "No se ingreso un numero, Intentelo de nuevo" << endl;
+        cout << endl;
+        cout << "Se ingreso un Caracer no un numero, Intentelo de nuevo" << endl;
+        return false;
+    }
+    // Validacion de Input, En caso de recibir un numero de casilla no posible, falla.
+    if (selec > 9 || selec < 0)
+    {
+        cout << endl;
+        cout << "La casilla seleccionada no existe" << endl;
         return false;
     }
 
-    if (selec > 9 || selec  < 0)
+    // validacion de casilla, en caso de recibir un input con una casilla ya ocupada falla
+
+    if (mostrar[selec - 1] == "X" || mostrar[selec - 1] == "O")
     {
+        cout << endl;
+        cout << "Se intento poner algo en una casilla ya ocupada" << endl;
         return false;
     }
+
     return true;
 }
