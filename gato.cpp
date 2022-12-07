@@ -2,6 +2,7 @@
 
 using namespace std;
 
+//Inicializa el tablero y los jugadores
 gato::gato(string jugador1, string jugador2)
 {
     this->jugador1 = jugador1;
@@ -13,6 +14,7 @@ gato::gato(string jugador1, string jugador2)
     }
 }
 
+//Muestra el tablero
 void gato::mostrarTablero()
 {
     cout << "         |         |         " << endl;
@@ -26,6 +28,8 @@ void gato::mostrarTablero()
     cout << "         |         |         " << endl;
 }
 
+//Revisa los posibles estados del juego y si uno es ganador manda llamar a la funciuon 
+//ganador con el ganador como parametro. 
 void gato::revisaGanador()
 {
     turno += 1;
@@ -62,12 +66,14 @@ void gato::revisaGanador()
     {
         ganador(mostrar[6]);
     }
-    if (turno == 10)
+    else if (turno == 10)
     {
         ganador("E");
     }
 }
 
+// Funcion que muestra quien es el ganador, recibe como parametro un string, 
+// si el string es X, gano el jugador 1, si es O gano el jugador 2, si es E no gano nadie
 void gato::ganador(string ganador)
 {
     if (ganador == "E")
@@ -76,7 +82,7 @@ void gato::ganador(string ganador)
         cout << "-------------------------------------" << endl;
         cout << "   NO Gano nadie lo sentimos mucho" << endl;
         cout << "-------------------------------------" << endl;
-        fin();
+        juego = false;
     }
     else if (ganador == "X")
     {
@@ -84,7 +90,7 @@ void gato::ganador(string ganador)
         cout << "-------------------------------------" << endl;
         cout << "Felicidades Gano " << jugador1 << " Con las X" << endl;
         cout << "-------------------------------------" << endl;
-        fin();
+        juego = false;
     }
     else
     {
@@ -92,15 +98,20 @@ void gato::ganador(string ganador)
         cout << "-------------------------------------" << endl;
         cout << "Felicidades Gano " << jugador2 << " Con las O" << endl;
         cout << "-------------------------------------" << endl;
-        fin();
+        juego = false;
     }
 }
 
+
+// Regres el estado final del juego para saber si se debe seguir jugando o no
 bool gato::fin()
 {
-    return true;
+    
+    return juego;
 }
 
+// Funcion que recibe el input del usuario y valida que sea un numero del 1 al 9
+// La variable Mostrar es el arreglo que tiene el tablero y las posiciones actuales. 
 void gato::jugada()
 {
     string seleccion;
@@ -136,6 +147,7 @@ void gato::jugada()
 }
 
 
+// Funcion que valida el input del usuario, recibe un string y regresa un bool
 bool gato::validacion(string seleccion)
 {
 
