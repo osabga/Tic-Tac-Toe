@@ -1,5 +1,5 @@
 # Tic Tac Toe AI
- Tic Tac Toe AI using Minimax algoritm 
+ Tic Tac Toe 
 
-At the moment im only working in getting the gameplay perfect. 
+Finished
 
