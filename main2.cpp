@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-//Falta lo del bot y empate
+// Falta lo del bot y empate
 
 void showGrid(char positions[]) {
     cout << "       |       |       " << endl;
@@ -24,36 +24,38 @@ int askPosition(char positions[], bool player) {
     cin >> res;
 
     try {
-        if (positions[stoi(res) - 1] == 'O' || 
+        if (positions[stoi(res) - 1] == 'O' ||
             positions[stoi(res) - 1] == 'X') {
-                cout << "Invalid response" << endl;
-                return askPosition(positions, player);
-        } else {
+            cout << "Invalid response" << endl;
+            return askPosition(positions, player);
+        }
+        else {
             positions[stoi(res) - 1] = *(player ? "X" : "O");
             return stoi(res) - 1;
         }
-    } catch (...) {
+    }
+    catch (...) {
         cout << "Invalid response" << endl;
         return askPosition(positions, player);
     }
 }
 
 int bestMove(char positions[]) {
-    //Bot
+    // Bot
     return 0;
 }
 
 bool checkWin(char positions[], int lastPosition, bool player) {
     int combinations[9][4][2] = {
-        {{1,2},{4,8},{3,6}},
-        {{0,2},{4,7}},
-        {{0,1},{5,8},{4,6}},
-        {{4,5},{0,6}},
-        {{3,5},{1,7},{0,8},{2,6}},
-        {{2,8},{3,4}},
-        {{0,3},{7,8},{2,4}},
-        {{1,4},{6,8}},
-        {{2,5},{6,7},{0,4}}
+        {{1, 2}, {4, 8}, {3, 6}},
+        {{0, 2}, {4, 7}},
+        {{0, 1}, {5, 8}, {4, 6}},
+        {{4, 5}, {0, 6}},
+        {{3, 5}, {1, 7}, {0, 8}, {2, 6}},
+        {{2, 8}, {3, 4}},
+        {{0, 3}, {7, 8}, {2, 4}},
+        {{1, 4}, {6, 8}},
+        {{2, 5}, {6, 7}, {0, 4}}
     };
 
     int posibilities = lastPosition == 4 ? 4 : 3 - lastPosition % 2;
@@ -61,7 +63,7 @@ bool checkWin(char positions[], int lastPosition, bool player) {
     for (int i = 0; i < posibilities; i++) {
         int total = 0;
         for (int j = 0; j < 2; j++) {
-            if(positions[combinations[lastPosition][i][j]] == (player ? 'X' : 'O')) {
+            if (positions[combinations[lastPosition][i][j]] == (player ? 'X' : 'O')) {
                 total++;
             }
             if (total == 2) {
@@ -81,7 +83,6 @@ void onePlayer(char positions[]) {
         int lastPosition = player ? bestMove(positions) : askPosition(positions, player);
         win = checkWin(positions, lastPosition, player);
     }
-
 }
 
 void twoPlayers(char positions[]) {
@@ -103,7 +104,6 @@ void twoPlayers(char positions[]) {
     } else {
         cout << endl << "It was a tie!" << endl;
     }
-    
     cout << "Thanks for playing!" << endl;
 }
 
@@ -112,7 +112,7 @@ void playerNumbers() {
 
     char positions[9];
 
-    for(int i = 0; i < 9; i++) {
+    for (int i = 0; i < 9; i++) {
         positions[i] = i + 49;
     }
 
@@ -121,12 +121,16 @@ void playerNumbers() {
 
     if (res == "1") {
         onePlayer(positions);
-    } else if (res == "2") {
+    }
+    else if (res == "2") {
         twoPlayers(positions);
-    } else if (res == "exit") {
+    }
+    else if (res == "exit") {
         cout << "Thanks for playing!" << endl;
-    } else {
-        cout << "Invalid response" << endl << endl;
+    }
+    else {
+        cout << "Invalid response" << endl
+             << endl;
         playerNumbers();
     }
 }
