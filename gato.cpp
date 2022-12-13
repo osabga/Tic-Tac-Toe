@@ -2,7 +2,7 @@
 
 using namespace std;
 
-//Inicializa el tablero y los jugadores
+// Inicializa el tablero y los jugadores
 gato::gato(string jugador1, string jugador2)
 {
     this->jugador1 = jugador1;
@@ -14,7 +14,7 @@ gato::gato(string jugador1, string jugador2)
     }
 }
 
-//Muestra el tablero
+// Muestra el tablero
 void gato::mostrarTablero()
 {
     cout << "         |         |         " << endl;
@@ -28,11 +28,11 @@ void gato::mostrarTablero()
     cout << "         |         |         " << endl;
 }
 
-//Revisa los posibles estados del juego y si uno es ganador manda llamar a la funciuon 
-//ganador con el ganador como parametro. 
+// Revisa los posibles estados del juego y si uno es ganador manda llamar a la funciuon
+// ganador con el ganador como parametro.
 void gato::revisaGanador()
 {
-    turno += 1;
+    turno = turno + 1;
 
     if (mostrar[0] == mostrar[1] && mostrar[1] == mostrar[2])
     {
@@ -60,11 +60,11 @@ void gato::revisaGanador()
     }
     else if (mostrar[1] == mostrar[4] && mostrar[4] == mostrar[7])
     {
-        ganador(mostrar[6]);
+        ganador(mostrar[1]);
     }
     else if (mostrar[2] == mostrar[5] && mostrar[5] == mostrar[8])
     {
-        ganador(mostrar[6]);
+        ganador(mostrar[2]);
     }
     else if (turno == 10)
     {
@@ -72,7 +72,7 @@ void gato::revisaGanador()
     }
 }
 
-// Funcion que muestra quien es el ganador, recibe como parametro un string, 
+// Funcion que muestra quien es el ganador, recibe como parametro un string,
 // si el string es X, gano el jugador 1, si es O gano el jugador 2, si es E no gano nadie
 void gato::ganador(string ganador)
 {
@@ -102,16 +102,15 @@ void gato::ganador(string ganador)
     }
 }
 
-
 // Regres el estado final del juego para saber si se debe seguir jugando o no
 bool gato::fin()
 {
-    
+
     return juego;
 }
 
 // Funcion que recibe el input del usuario y valida que sea un numero del 1 al 9
-// La variable Mostrar es el arreglo que tiene el tablero y las posiciones actuales. 
+// La variable Mostrar es el arreglo que tiene el tablero y las posiciones actuales.
 void gato::jugada()
 {
     string seleccion;
@@ -119,10 +118,12 @@ void gato::jugada()
     {
         if (turno % 2 != 0)
         {
+            
             cout << endl;
             cout << jugador1;
             cout << " Ingrese el numero de la casilla donde desea hacer su moviento " << endl;
             getline(cin, seleccion);
+            
         }
         else
         {
@@ -130,6 +131,7 @@ void gato::jugada()
             cout << jugador2;
             cout << " Ingrese el numero de la casilla donde desea hacer su moviento " << endl;
             getline(cin, seleccion);
+            
         }
 
     } while (!validacion(seleccion));
@@ -145,7 +147,6 @@ void gato::jugada()
     mostrarTablero();
     revisaGanador();
 }
-
 
 // Funcion que valida el input del usuario, recibe un string y regresa un bool
 bool gato::validacion(string seleccion)

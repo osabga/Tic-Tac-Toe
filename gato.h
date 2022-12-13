@@ -22,7 +22,6 @@ public:
     bool fin();
     void mostrarTablero();
     gato(std::string jugador1, std::string jugador2);
-    
     void jugada();
 };
 
