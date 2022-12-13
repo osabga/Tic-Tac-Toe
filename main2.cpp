@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include "gato.h"
 using namespace std;
 
 //Falta lo del bot y empate
@@ -57,7 +56,9 @@ bool checkWin(char positions[], int lastPosition, bool player) {
         {{2,5},{6,7},{0,4}}
     };
 
-    for (int i = 0; i < sizeof(positions[lastPosition]); i++) {
+    int posibilities = lastPosition == 4 ? 4 : 3 - lastPosition % 2;
+
+    for (int i = 0; i < posibilities; i++) {
         int total = 0;
         for (int j = 0; j < 2; j++) {
             if(positions[combinations[lastPosition][i][j]] == (player ? 'X' : 'O')) {
@@ -73,8 +74,6 @@ bool checkWin(char positions[], int lastPosition, bool player) {
 }
 
 void onePlayer(char positions[]) {
-
-
     bool win = false;
     bool player = false;
 
@@ -86,20 +85,25 @@ void onePlayer(char positions[]) {
 }
 
 void twoPlayers(char positions[]) {
+    bool win = false, player = false;
+    int plays = 0;
 
-    bool win = false;
-    bool player = false;
-
-    while (!win) {
+    while (!win && plays < 9) {
         int lastPosition = askPosition(positions, player);
         win = checkWin(positions, lastPosition, player);
         player = !player;
+        plays++;
     }
 
-    showGrid(positions);
-    player = !player;
+    if(win) {
+        showGrid(positions);
+        player = !player;
 
-    cout << endl << "Player " << player + 1 << " won!" << endl;
+        cout << endl << "Player " << player + 1 << " won!" << endl;
+    } else {
+        cout << endl << "It was a tie!" << endl;
+    }
+    
     cout << "Thanks for playing!" << endl;
 }
 
@@ -128,7 +132,6 @@ void playerNumbers() {
 }
 
 int main() {
-
     cout << "---------------------------------------------" << endl;
     cout << "TIC TAC TOE" << endl;
     cout << "----------------------------------------------" << endl;
