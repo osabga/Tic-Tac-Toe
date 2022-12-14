@@ -41,7 +41,7 @@ int askPosition(char positions[], bool player)
         }
         else
         {
-            positions[stoi(res) - 1] = *(player ? "X" : "O");
+            positions[stoi(res) - 1] = (player ? 'X' : 'O');
             return stoi(res) - 1;
         }
     }
@@ -122,7 +122,7 @@ int evaluation(char positions[])
     //  +0 si no gana nadie, empate o el juego aun no termina
     if (positions[0] == positions[1] && positions[1] == positions[2])
     {
-        cout << "Gano " << positions[0];
+        // cout << "Gano " << positions[0];
         if (positions[1] == 'O')
         {
             return -10;
@@ -134,7 +134,7 @@ int evaluation(char positions[])
     }
     else if (positions[3] == positions[4] && positions[4] == positions[5])
     {
-        cout << "Gano " << positions[3];
+        // cout << "Gano " << positions[3];
         if (positions[3] == 'O')
         {
             return -10;
@@ -146,7 +146,7 @@ int evaluation(char positions[])
     }
     else if (positions[6] == positions[7] && positions[7] == positions[8])
     {
-        cout << "Gano " << positions[6];
+        // cout << "Gano " << positions[6];
         if (positions[6] == 'O')
         {
             return -10;
@@ -158,7 +158,7 @@ int evaluation(char positions[])
     }
     else if (positions[0] == positions[4] && positions[4] == positions[8])
     {
-        cout << "Gano " << positions[0];
+        // cout << "Gano " << positions[0];
         if (positions[0] == 'O')
         {
             return -10;
@@ -170,7 +170,7 @@ int evaluation(char positions[])
     }
     else if (positions[6] == positions[4] && positions[4] == positions[2])
     {
-        cout << "Gano " << positions[6];
+        // cout << "Gano " << positions[6];
         if (positions[6] == 'O')
         {
             return -10;
@@ -182,7 +182,7 @@ int evaluation(char positions[])
     }
     else if (positions[0] == positions[3] && positions[3] == positions[6])
     {
-        cout << "Gano " << positions[6];
+        // cout << "Gano " << positions[6];
         if (positions[6] == 'O')
         {
             return -10;
@@ -194,7 +194,7 @@ int evaluation(char positions[])
     }
     else if (positions[1] == positions[4] && positions[4] == positions[7])
     {
-        cout << "Gano " << positions[1];
+        // cout << "Gano " << positions[1];
         if (positions[1] == 'O')
         {
             return -10;
@@ -206,7 +206,7 @@ int evaluation(char positions[])
     }
     else if (positions[2] == positions[5] && positions[5] == positions[8])
     {
-        cout << "Gano " << positions[2];
+        // cout << "Gano " << positions[2];
         if (positions[2] == 'O')
         {
             return -10;
@@ -218,10 +218,9 @@ int evaluation(char positions[])
     }
     else
     {
-        //cout << "No ha ganado Nadie" << endl;
+        // cout << "No ha ganado Nadie" << endl;
         return 0;
     }
-    
 }
 
 int minimax(char positions[], int depth, bool player)
@@ -250,7 +249,7 @@ int minimax(char positions[], int depth, bool player)
         int best = -1000;
         for (int i = 0; i < 9; i++)
         {
-            if (positions[i] != 'X' || positions[i] != 'O')
+            if (positions[i] != 'X' && positions[i] != 'O')
             {
                 positions[i] = 'X';
 
@@ -266,7 +265,7 @@ int minimax(char positions[], int depth, bool player)
         int best = 1000;
         for (int i = 0; i < 9; i++)
         {
-            if (positions[i] != 'X' || positions[i] != 'O')
+            if (positions[i] != 'X' && positions[i] != 'O')
             {
                 positions[i] = 'O';
 
@@ -285,7 +284,7 @@ void bestMove(char positions[])
     int OptiMove;
     for (int i = 0; i < 9; i++)
     {
-        if (positions[i] != 'X' || positions[i] != 'O')
+        if (positions[i] != 'X' && positions[i] != 'O')
         {
             positions[i] = 'X';
 
@@ -315,7 +314,6 @@ void twoPlayers(char positions[])
         {
             bestMove(positions);
         }
-
 
         int lastPosition = askPosition(positions, player);
         win = checkWin(positions, lastPosition, player);
