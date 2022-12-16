@@ -3,6 +3,14 @@
 #include <string>
 using namespace std;
 
+void resetBoard(char positions[])
+{
+    for (int i = 0; i < 9; i++)
+    {
+        positions[i] = 49 + i;
+    }
+}
+
 void showGrid(char positions[])
 {
     cout << "       |       |       " << endl;
@@ -244,8 +252,9 @@ void onePlayer(char positions[])
 {
     bool win = false, player = false;
     int plays = 0, lastPosition;
-    
+    string again;
 
+    play:
 
     while (!win && plays < 9)
     {
@@ -274,6 +283,18 @@ void onePlayer(char positions[])
         cout << endl
              << "It was a tie!" << endl;
     }
+
+    cout<<"Do you want to play again? (1/2)"<<endl;
+    cin>>again;
+    if(again=="1")
+    {
+        resetBoard(positions);
+        player = !player;
+        plays = 0; win = false;
+        goto play;
+    }
+
+
     cout << "Thanks for playing!" << endl;
 }
 
@@ -281,6 +302,10 @@ void twoPlayers(char positions[])
 {
     bool win = false, player = false;
     int plays = 0;
+    string again;
+
+    play:
+
 
     while (!win && plays < 9)
     {
@@ -302,6 +327,17 @@ void twoPlayers(char positions[])
     {
         cout << endl
              << "It was a tie!" << endl;
+    }
+    
+    
+    cout<<"Do you want to play again? (1/2)"<<endl;
+    cin>>again;
+    if(again=="1")
+    {
+        resetBoard(positions);
+        player = !player;
+        plays = 0; win = false;
+        goto play;
     }
     cout << "Thanks for playing!" << endl;
 }
