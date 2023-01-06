@@ -1,17 +1,14 @@
-# Tic Tac Toe Bot 
+# Tic Tac Toe with AI Opponent in C++ 
 
-This is a Fully Functional 1 or 2 player Tic Tac Toe game that runs in the terminal. 
+This project involves creating a Tic Tac Toe game in C++ where the second player can be a bot. The bot uses minimax algorithm and memoization to make its moves always aiming to make a perfect game (winning or tying).
 
-The 1 player game was implemented using the Mini Max Algorithm. 
+The project was completed in collaboration by [@osabga](https://www.github.com/osabga) and [@samsbg](https://www.github.com/samsbg). The main responsibilities for [@osabga](https://www.github.com/osabga) were implementing the minimax algorithm, user interface, and input handling, while [@samsbg](https://www.github.com/samsbg) was responsible for the general structure and making the minimax algorithm more efficient.
 
-This project was created with the help and collaboration of @samsbg 
+## Fun facts
 
+-	For the memoization, the way to save the state of the game was through converting the grid into a base 3 number depending on the symbol in it, then use that number in a dictionary to save the minimax score
 
-## Authors
-
-- [@osabga](https://www.github.com/osabga)
-- [@samsbg](https://www.github.com/samsbg)
-
+![image](https://user-images.githubusercontent.com/70488844/210968616-f6f18cc3-80b1-4e08-9e1c-5e3fb3095404.png)
 
 ## License
 
