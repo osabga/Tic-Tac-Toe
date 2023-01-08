@@ -10,7 +10,7 @@ The project was completed in collaboration by [@osabga](https://www.github.com/o
 
 ![image](https://user-images.githubusercontent.com/70488844/210968616-f6f18cc3-80b1-4e08-9e1c-5e3fb3095404.png)
 
--Our code uses a really cool feautre of arrays, in c++ arrays dont need to be return to be modify by a function, this is due to the nature of the data structure. Arrays work with pointers, so when we pass a array to a function, we actually are sentind a pointer to the head of the array, this means all modifications made will remain making the code cleaner, due to the fact that we are not returning anything. 
+- Our code uses a really cool feautre of arrays, in c++ arrays dont need to be return to be modify by a function, this is due to the nature of the data structure. Arrays work with pointers, so when we pass a array to a function, we actually are sentind a pointer to the head of the array, this means all modifications made will remain making the code cleaner, due to the fact that we are not returning anything. 
 
 ## License
 
